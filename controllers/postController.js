@@ -22,5 +22,17 @@ module.exports = {
         const postId = req.params.post_id;
         await postModel.deletePost(postId);
         res.redirect('/');
+    },
+    updatePost: async (req, res) => {
+        const postId = req.params.post_id;
+        const posts = await homeModel.getPosts();
+        const post = await postModel.getPost(postId);
+        res.render('updatePost.ejs', {posts: posts, post: post});
+    },
+    updatePostProcess: async (req, res) => {
+        const postId = req.params.post_id;
+        const updatedPostData = req.body;
+        await postModel.updatePost(updatedPostData, postId);
+        res.redirect(`/post/read/${postId}`);
     }
 }
