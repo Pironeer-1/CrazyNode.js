@@ -26,8 +26,10 @@ app.get('/', homeController.home);
 
 //Routers
 const postRouter = require('./routers/postRouter.js');
+const commentRouter = require('./routers/commentRouter.js');
 
 app.use('/post', postRouter);
+app.use('/comment', commentRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
