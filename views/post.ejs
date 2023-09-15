@@ -7,7 +7,7 @@
     <a href="/post/update/<%= post.post_id %>">Update</a>
 </form>
 
-<div>
+<div id="comment-container">
     <% if(comments.length > 0) { %>
     <% for(let comment of comments) { %>
         <div class="comment">
@@ -23,8 +23,15 @@
     <% } %>
 </div>
 
-<form action="/comment/create/<%= post.post_id %>" method="post">
+<!-- <form action="/comment/create/<%= post.post_id %>" method="post">
     <input type="text" name="username" class="input-title" placeholder="input your name...">
     <textarea name="content" id="" cols="30" rows="3" class="textarea-content" placeholder="write comment..."></textarea>
     <button>Submit</button>
-</form>
+</form> -->
+
+<input type="text" name="username" class="input-title" id="username" placeholder="input your name...">
+<textarea name="content" id="comment-content" cols="30" rows="3" class="textarea-content" placeholder="write comment..."></textarea>
+<input type="hidden" name="post_id" id="post_id" value="<%= post.post_id %>">
+<button id="btn-create-comment">Submit</button>
+
+<script src="/js/comment.js"></script>

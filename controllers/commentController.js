@@ -6,8 +6,9 @@ module.exports = {
     createComment: async (req, res) => {
         const newCommentData = req.body;
         const postId = req.params.post_id;
-        await commentModel.createComment(postId, newCommentData);
-        res.redirect(`/post/read/${postId}`);
+        const commentId = await commentModel.createComment(postId, newCommentData);
+        // res.redirect(`/post/read/${postId}`);
+        res.json({commentId: commentId});
     },
     deleteComment: async (req, res) => {
         const commentId = req.params.comment_id;

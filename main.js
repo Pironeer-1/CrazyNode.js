@@ -15,6 +15,7 @@ const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 app.set('layout', 'index.ejs');
 app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
 
 //Static File
 app.use(express.static('public'));

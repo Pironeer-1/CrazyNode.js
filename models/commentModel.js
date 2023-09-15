@@ -10,7 +10,8 @@ module.exports = {
     },
     createComment: async (postId, newCommentData) => {
         const query = `INSERT INTO Comments (post_id, username, content) VALUES (?, ?, ?);`;
-        await db.query(query, [postId, newCommentData.username, newCommentData.content]);
+        const result = await db.query(query, [postId, newCommentData.username, newCommentData.content]);
+        return result[0].insertId;
     },
     deleteComment: async (commentId) => {
         const query = `DELETE FROM Comments WHERE comment_id=?;`;
