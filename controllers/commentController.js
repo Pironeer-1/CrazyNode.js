@@ -11,9 +11,11 @@ module.exports = {
         res.json({commentId: commentId});
     },
     deleteComment: async (req, res) => {
-        const commentId = req.params.comment_id;
+        // const commentId = req.params.comment_id;
+        const commentId = req.body.commentId;
         const result = await commentModel.deleteComment(commentId);
         
-        res.redirect(`/post/read/${result.post_id}`);
+        // res.redirect(`/post/read/${result.post_id}`);
+        res.json();
     }
 }

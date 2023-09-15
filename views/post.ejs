@@ -10,14 +10,12 @@
 <div id="comment-container">
     <% if(comments.length > 0) { %>
     <% for(let comment of comments) { %>
-        <div class="comment">
+        <div class="comment" id="<%= comment.comment_id %>">
             <div>
                 <p><b><%= comment.username %></b></p>
                 <p><%= comment.content %></p>
             </div>
-            <form action="/comment/delete/<%= comment.comment_id %>" method="post">
-                <button>Delete</button>
-            </form>
+            <button onclick="deleteComment(<%= comment.comment_id %>);">Delete</button>
         </div>
     <% } %>
     <% } %>
