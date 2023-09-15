@@ -1,4 +1,8 @@
 const express = require('express');
+const app = express();
+const port = 3000;
+
+//DB
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
@@ -9,35 +13,15 @@ const db = mysql.createPool({
     database: process.env.DB_NAME
 });
 
-const app = express();
-const port = 3000;
+//View Engine
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 app.get('/', async (req, res) => {
     const query = 'SELECT * FROM Posts;';
-    const result = await db.query(query);
-    let list = ``;
-    for(let data of result[0]) {
-        list += `<li><a href="/post/read/${data.post_id}">${data.title}</a></li>`;
-    }
+    const posts = await db.query(query);
 
-    const template = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>WEB</h1>
-        <ol>
-            ${list}
-        </ol>
-        <a href="/post/create">create</a>
-    </body>
-    </html>
-    `
-    res.send(template);
+    res.render('index.ejs', {'posts': posts[0]});
 });
 
 app.listen(port, () => {
