@@ -11,5 +11,9 @@ module.exports = {
         const query = `INSERT INTO Posts (title, content) VALUES (?, ?);`;
         const result = await db.query(query, [newPostData.title, newPostData.content]);
         return result[0].insertId;
+    },
+    deletePost: async (postId) => {
+        const query = `DELETE FROM Posts WHERE post_id=?;`;
+        await db.query(query, [postId]);
     }
 }

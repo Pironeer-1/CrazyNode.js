@@ -17,5 +17,10 @@ module.exports = {
         const newPostData = req.body;
         const newPostKey = await postModel.createNewPost(newPostData);
         res.redirect(`/post/read/${newPostKey}`);
+    },
+    deletePost: async (req, res) => {
+        const postId = req.params.post_id;
+        await postModel.deletePost(postId);
+        res.redirect('/');
     }
 }

@@ -28,6 +28,7 @@ app.get('/', homeController.home);
 app.get('/post/read/:post_id', postController.viewPost);
 app.get('/post/create', postController.createPost);
 app.post('/post/create', postController.createNewPost);
+app.post('/post/delete/:post_id', postController.deletePost);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
