@@ -11,8 +11,13 @@
     <% if(comments.length > 0) { %>
     <% for(let comment of comments) { %>
         <div class="comment">
-            <p><b><%= comment.username %></b></p>
-            <p><%= comment.content %></p>
+            <div>
+                <p><b><%= comment.username %></b></p>
+                <p><%= comment.content %></p>
+            </div>
+            <form action="/comment/delete/<%= comment.comment_id %>" method="post">
+                <button>Delete</button>
+            </form>
         </div>
     <% } %>
     <% } %>

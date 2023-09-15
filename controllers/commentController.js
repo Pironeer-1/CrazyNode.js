@@ -8,5 +8,11 @@ module.exports = {
         const postId = req.params.post_id;
         await commentModel.createComment(postId, newCommentData);
         res.redirect(`/post/read/${postId}`);
+    },
+    deleteComment: async (req, res) => {
+        const commentId = req.params.comment_id;
+        const result = await commentModel.deleteComment(commentId);
+        
+        res.redirect(`/post/read/${result.post_id}`);
     }
 }
