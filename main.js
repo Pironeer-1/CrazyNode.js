@@ -21,16 +21,13 @@ app.use(express.static('public'));
 
 //Controllers
 const homeController = require('./controllers/homeController.js');
-const postController = require('./controllers/postController.js');
 
 app.get('/', homeController.home);
 
-app.get('/post/read/:post_id', postController.viewPost);
-app.get('/post/create', postController.createPost);
-app.post('/post/create', postController.createNewPost);
-app.post('/post/delete/:post_id', postController.deletePost);
-app.get('/post/update/:post_id', postController.updatePost);
-app.post('/post/update/:post_id', postController.updatePostProcess);
+//Routers
+const postRouter = require('./routers/postRouter.js');
+
+app.use('/post', postRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
