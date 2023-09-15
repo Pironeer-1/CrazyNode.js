@@ -6,13 +6,10 @@ const port = 3000;
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-//Models
-const homeModel = require('./models/homeModel.js');
+//Controllers
+const homeController = require('./controllers/homeController.js');
 
-app.get('/', async (req, res) => {
-    const posts = await homeModel.getPosts(req, res);
-    res.render('index.ejs', {'posts': posts});
-});
+app.get('/', homeController.home);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
