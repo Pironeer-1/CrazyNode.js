@@ -7,7 +7,7 @@ const homeModel = require('../models/homeModel.js');
 // }
 module.exports = {
     home: async (req, res) => {
-        const posts = await homeModel.getPosts(req, res);
-        res.render('index.ejs', { 'posts': posts });
+        const posts = await homeModel.getPosts();
+        res.render('welcome.ejs', { 'posts': posts });
     }
 }

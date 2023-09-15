@@ -10,10 +10,9 @@ const db = mysql.createPool({
 });
 
 module.exports = {
-    getPosts: async () => {
-        const query = 'SELECT * FROM Posts;';
-        const posts = await db.query(query);
-
-        return posts[0];
+    getPost: async (postId) => {
+        const query = `SELECT * FROM Posts WHERE post_id=?`;
+        const postData = await db.query(query, [postId]);
+        return postData[0][0];
     }
 }
