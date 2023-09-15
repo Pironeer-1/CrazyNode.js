@@ -11,8 +11,10 @@
 <body>
     <a href="/"><h1>WEB</h1></a>
     <ol>
+        <% if(posts.length > 0) { %>
         <% for(let post of posts) { %>
             <li><a href="/post/read/<%= post.post_id %>"><%= post.title %></a></li>
+        <% } %>
         <% } %>
     </ol>
     <a href="/post/create">create</a>

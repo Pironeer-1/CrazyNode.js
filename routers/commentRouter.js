@@ -4,4 +4,6 @@ const router = express.Router();
 //Controllers
 const commentController = require('../controllers/commentController.js');
 
+router.post('/create/:post_id', commentController.createComment)
+
 module.exports = router;

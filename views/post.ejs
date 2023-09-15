@@ -1,6 +1,25 @@
+<link rel="stylesheet" href="/css/input.css">
+
 <h1><%= post.title %></h1>
 <p><%= post.content %></p>
 <form action="/post/delete/<%= post.post_id %>" method="post">
     <button>Delete</button>
     <a href="/post/update/<%= post.post_id %>">Update</a>
+</form>
+
+<div>
+    <% if(comments.length > 0) { %>
+    <% for(let comment of comments) { %>
+        <div class="comment">
+            <p><b><%= comment.username %></b></p>
+            <p><%= comment.content %></p>
+        </div>
+    <% } %>
+    <% } %>
+</div>
+
+<form action="/comment/create/<%= post.post_id %>" method="post">
+    <input type="text" name="username" class="input-title" placeholder="input your name...">
+    <textarea name="content" id="" cols="30" rows="3" class="textarea-content" placeholder="write comment..."></textarea>
+    <button>Submit</button>
 </form>

@@ -1,5 +1,6 @@
 const postModel = require('../models/postModel.js');
 const homeModel = require('../models/homeModel.js');
+const commentModel = require('../models/commentModel.js');
 
 module.exports = {
     viewPost: async (req, res) => {
@@ -7,7 +8,10 @@ module.exports = {
         const posts = await homeModel.getPosts();
         const post = await postModel.getPost(postId);
 
-        res.render('post.ejs', {posts: posts, post: post});
+        //댓글 가져오기
+        const comments = await commentModel.getComments(postId);
+
+        res.render('post.ejs', {posts: posts, post: post, comments: comments});
     },
     createPost: async (req, res) => {
         const posts = await homeModel.getPosts();

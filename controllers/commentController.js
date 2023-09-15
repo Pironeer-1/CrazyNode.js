@@ -1,3 +1,12 @@
 const commentModel = require('../models/commentModel.js');
 const postModel = require('../models/postModel.js');
 const homeModel = require('../models/homeModel.js');
+
+module.exports = {
+    createComment: async (req, res) => {
+        const newCommentData = req.body;
+        const postId = req.params.post_id;
+        await commentModel.createComment(postId, newCommentData);
+        res.redirect(`/post/read/${postId}`);
+    }
+}
