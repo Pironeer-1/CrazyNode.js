@@ -15,7 +15,10 @@ const port = 3000;
 app.get('/', async (req, res) => {
     const query = 'SELECT * FROM Posts;';
     const result = await db.query(query);
-    console.log(result);
+    let list = ``;
+    for(let data of result[0]) {
+        list += `<li><a href="/post/read/${data.post_id}">${data.title}</a></li>`;
+    }
 
     const template = `
     <!DOCTYPE html>
@@ -28,9 +31,7 @@ app.get('/', async (req, res) => {
     <body>
         <h1>WEB</h1>
         <ol>
-            <li>Node.js</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
+            ${list}
         </ol>
         <a href="/post/create">create</a>
     </body>
