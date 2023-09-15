@@ -1,8 +1,22 @@
 const express = require('express');
+require('dotenv').config();
+const mysql = require('mysql2/promise');
+
+const db = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
+
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    const query = 'SELECT * FROM Posts;';
+    const result = await db.query(query);
+    console.log(result);
+
     const template = `
     <!DOCTYPE html>
     <html lang="en">
